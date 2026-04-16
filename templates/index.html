@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">    <title>To-Do App</title>
+</head>
+<body>
+    <div class="container">
+    <h1>My To-Do App</h1>
+
+    <form method="POST" action="/add">
+        <input type="text" name="task" placeholder="Enter task">
+        <button type="submit">Add</button>
+    </form>
+
+    <ul>
+        {% for task in tasks %}
+        <li>
+            {{ task[1] }}
+
+            <div>
+                <a href="/edit/{{ task[0] }}">Edit</a>
+
+                <form method="POST" action="/delete/{{ task[0] }}" style="display:inline;">
+                    <button type="submit">X</button>
+                </form>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+</body>
+</html>
